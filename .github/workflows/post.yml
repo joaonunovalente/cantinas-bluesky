@@ -1,0 +1,39 @@
+name: Post Ementas
+
+on:
+  schedule:
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - run: npm install
+
+      - run: node src/santiago.js
+        env:
+          BSKY_USER: ${{ secrets.BSKY_USER_SANTIAGO }}
+          BSKY_PASS: ${{ secrets.BSKY_PASS_SANTIAGO }}
+
+      - run: node src/crasto.js
+        env:
+          BSKY_USER: ${{ secrets.BSKY_USER_CRASTO }}
+          BSKY_PASS: ${{ secrets.BSKY_PASS_CRASTO }}
+
+      - run: node src/estga.js
+        env:
+          BSKY_USER: ${{ secrets.BSKY_USER_ESTGA }}
+          BSKY_PASS: ${{ secrets.BSKY_PASS_ESTGA }}
+
+      - run: node src/grelhados.js
+        env:
+          BSKY_USER: ${{ secrets.BSKY_USER_GRELHADOS }}
+          BSKY_PASS: ${{ secrets.BSKY_PASS_GRELHADOS }}

@@ -1,0 +1,17 @@
+{
+  "name": "cantinas-bluesky",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "post:santiago": "node src/santiago.js",
+    "post:crasto": "node src/crasto.js",
+    "post:estga": "node src/estga.js",
+    "post:grelhados": "node src/grelhados.js",
+    "post:all": "npm run post:santiago && npm run post:crasto && npm run post:estga && npm run post:grelhados"
+  },
+  "dependencies": {
+    "@atproto/api": "^0.19.9",
+    "dotenv": "^17.4.2",
+    "node-fetch": "^3.3.2"
+  }
+}
