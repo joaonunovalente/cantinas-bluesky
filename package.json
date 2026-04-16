@@ -7,6 +7,7 @@
     "post:crasto": "node src/crasto.js",
     "post:estga": "node src/estga.js",
     "post:grelhados": "node src/grelhados.js",
+    "post:cantinas": "node src/cantinas.js",
     "post:all": "npm run post:santiago && npm run post:crasto && npm run post:estga && npm run post:grelhados"
   },
   "dependencies": {

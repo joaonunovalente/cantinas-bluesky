@@ -37,3 +37,8 @@ jobs:
         env:
           BSKY_USER: ${{ secrets.BSKY_USER_GRELHADOS }}
           BSKY_PASS: ${{ secrets.BSKY_PASS_GRELHADOS }}
+
+      - run: node src/cantinas.js
+        env:
+          BSKY_USER: ${{ secrets.BSKY_USER_CANTINAS }}
+          BSKY_PASS: ${{ secrets.BSKY_PASS_CANTINAS }}
