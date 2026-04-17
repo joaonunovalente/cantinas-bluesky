@@ -29,6 +29,25 @@ async function getMenu() {
 function formatMeal(meal) {
   if (!meal?.items?.length) return null;
 
+  const normalizeText = (text = '') =>
+    text
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[()]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .toLowerCase();
+
+  const isStrikeItem = item => {
+    const normalized = normalizeText(item?.text || '');
+    return normalized.includes('greve') && normalized.includes('funcao publica');
+  };
+
+  const strikeMessage = '⚠️ Greve da Função Pública. Serviço indisponível nesta refeição.';
+  if (meal.items.every(isStrikeItem)) {
+    return strikeMessage;
+  }
+
   const map = {
     soup: '🥣',
     fish: '🐟',
@@ -39,7 +58,7 @@ function formatMeal(meal) {
   };
 
   return meal.items
-    .map(item => `${map[item.category] || '🍽️'} ${item.text}`)
+    .map(item => (isStrikeItem(item) ? strikeMessage : `${map[item.category] || '🍽️'} ${item.text}`))
     .join('\n');
 }
 
